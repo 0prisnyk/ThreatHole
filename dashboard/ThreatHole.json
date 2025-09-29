@@ -1,0 +1,1607 @@
+{
+  "dataSources": {
+    "ds_rcr1Coeb": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=pihole sourcetype=pihole:ftl \n| search eventtype=Clean\n| timechart count",
+        "queryParameters": {
+          "earliest": "-7d@h",
+          "latest": "now"
+        }
+      },
+      "name": "Clean queries in last 24h search"
+    },
+    "ds_FQBMjp9b": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=pihole sourcetype=pihole:ftl \n| search eventtype=Suspicious\n| timechart count",
+        "queryParameters": {
+          "earliest": "-7d@h",
+          "latest": "now"
+        }
+      },
+      "name": "Suspicious queries in last 24h search"
+    },
+    "ds_kiSo2FCq": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=pihole sourcetype=pihole:ftl \n| search eventtype=Malicious\n| timechart count",
+        "queryParameters": {
+          "earliest": "-7d@h",
+          "latest": "now"
+        }
+      },
+      "name": "Malicious queries in last 24h search"
+    },
+    "ds_zdWqTN5s": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=pihole sourcetype=pihole:ftl \n| search action=allowed\n| timechart count",
+        "queryParameters": {
+          "earliest": "-7d@h",
+          "latest": "now"
+        }
+      },
+      "name": "Allowed connections in last 24h search"
+    },
+    "ds_P4gd7rER": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=pihole sourcetype=pihole:ftl \n| search action=blocked\n| timechart count",
+        "queryParameters": {
+          "earliest": "-7d@h",
+          "latest": "now"
+        }
+      },
+      "name": "Blocked connections in last 24h search"
+    },
+    "ds_rZOUNdGG": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=pihole sourcetype=pihole:ftl \n| timechart count",
+        "queryParameters": {
+          "earliest": "-7d@h",
+          "latest": "now"
+        }
+      },
+      "name": "Total queries in last 24h search"
+    },
+    "ds_PhhlwG7T": {
+      "type": "ds.search",
+      "options": {
+        "query": "`pihole_ftl`\n| search type IN ($type$) AND action IN ($action$) AND status IN ($status$) AND client=$client$ AND domain=$domain$ AND reply_type IN ($reply_type$) AND \"eventtype\" IN ($eventtype$)\n| chart count by client, eventtype",
+        "queryParameters": {
+          "earliest": "$global_time.earliest$",
+          "latest": "$global_time.latest$"
+        }
+      },
+      "name": "TI statuses per client"
+    },
+    "ds_timechart_by_TI_statuses": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=pihole sourcetype=pihole:ftl \n| search type IN ($type$) AND action IN ($action$) AND status IN ($status$) AND client=$client$ AND domain=$domain$ AND reply_type IN ($reply_type$) AND \"eventtype\" IN ($eventtype$)\n| timechart count by eventtype",
+        "queryParameters": {
+          "earliest": "$global_time.earliest$",
+          "latest": "$global_time.latest$"
+        }
+      },
+      "name": "Timechart by TI statuses"
+    },
+    "ds_timechart_by_clients": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=pihole sourcetype=pihole:ftl \n| search type IN ($type$) AND action IN ($action$) AND status IN ($status$) AND client=$client$ AND domain=$domain$ AND reply_type IN ($reply_type$) AND \"eventtype\" IN ($eventtype$)\n| timechart count by client",
+        "queryParameters": {
+          "earliest": "$global_time.earliest$",
+          "latest": "$global_time.latest$"
+        }
+      },
+      "name": "Timechart by clients"
+    },
+    "ds_pie_active_clients": {
+      "type": "ds.search",
+      "options": {
+        "query": "`pihole_ftl`\n| search type IN ($type$) AND action IN ($action$) AND status IN ($status$) AND client=$client$ AND domain=$domain$ AND reply_type IN ($reply_type$) AND \"eventtype\" IN ($eventtype$)\n| chart count by client",
+        "queryParameters": {
+          "earliest": "$global_time.earliest$",
+          "latest": "$global_time.latest$"
+        }
+      },
+      "name": "Pie Active Clients"
+    },
+    "ds_pie_actions": {
+      "type": "ds.search",
+      "options": {
+        "query": "`pihole_ftl`\n| search type IN ($type$) AND action IN ($action$) AND status IN ($status$) AND client=$client$ AND domain=$domain$ AND reply_type IN ($reply_type$) AND \"eventtype\" IN ($eventtype$)\n| chart count by action",
+        "queryParameters": {
+          "earliest": "$global_time.earliest$",
+          "latest": "$global_time.latest$"
+        }
+      },
+      "name": "Pie Actions"
+    },
+    "ds_detailed_table": {
+      "type": "ds.search",
+      "options": {
+        "query": "`pihole_ftl`\n| search type IN ($type$) AND action IN ($action$) AND status IN ($status$) AND client=$client$ AND domain=$domain$ AND reply_type IN ($reply_type$) AND \"eventtype\" IN ($eventtype$)\n| rename timestamp as Time, type as Type, action as Action, status as Status, client as \"Client IP\", domain as Domain, forward as Forward, reply_type as \"Reply type\", eventtype as \"TI status\"",
+        "queryParameters": {
+          "earliest": "$global_time.earliest$",
+          "latest": "$global_time.latest$"
+        }
+      },
+      "name": "Detailed table"
+    },
+    "ds_VdR29zsD": {
+      "type": "ds.search",
+      "options": {
+        "query": "`pihole_ftl`\n| search eventtype IN ($eventtype$) AND action IN ($action$) AND status IN ($status$) AND client=$client$ AND domain=$domain$ AND reply_type IN ($reply_type$)\n| table type \n| dedup type",
+        "queryParameters": {
+          "earliest": "$global_time.earliest$",
+          "latest": "$global_time.latest$"
+        }
+      },
+      "name": "Types"
+    },
+    "ds_EnVHiv7J": {
+      "type": "ds.search",
+      "options": {
+        "query": "`pihole_ftl`\n| search type IN ($type$) AND status IN ($status$) AND client=$client$ AND domain=$domain$ AND reply_type IN ($reply_type$) AND eventtype IN ($eventtype$)\n| table action \n| dedup action",
+        "queryParameters": {
+          "earliest": "$global_time.earliest$",
+          "latest": "$global_time.latest$"
+        }
+      },
+      "name": "Actions"
+    },
+    "ds_hGarqLiL": {
+      "type": "ds.search",
+      "options": {
+        "query": "`pihole_ftl`\n| search type IN ($type$) AND action IN ($action$) AND client=$client$ AND domain=$domain$ AND reply_type IN ($reply_type$) AND eventtype IN ($eventtype$) \n| dedup status\n| eval status = \"\\\"\" . status . \"\\\"\"\n| table status",
+        "queryParameters": {
+          "earliest": "$global_time.earliest$",
+          "latest": "$global_time.latest$"
+        }
+      },
+      "name": "Statuses"
+    },
+    "ds_5mwkotBe": {
+      "type": "ds.search",
+      "options": {
+        "query": "`pihole_ftl`\n| search type IN ($type$) AND action IN ($action$) AND status IN ($status$) AND client=$client$ AND domain=$domain$ AND eventtype IN ($eventtype$)\n  | table reply_type\n  | dedup reply_type",
+        "queryParameters": {
+          "earliest": "$global_time.earliest$",
+          "latest": "$global_time.latest$"
+        }
+      },
+      "name": "Reply types"
+    },
+    "ds_P8uI5EoJ": {
+      "type": "ds.search",
+      "options": {
+        "query": "`pihole_ftl`\n| search type IN ($type$) AND action IN ($action$) AND status IN ($status$) AND client=$client$ AND domain=$domain$ AND reply_type IN ($reply_type$)\n  | table eventtype\n  | dedup eventtype",
+        "queryParameters": {
+          "earliest": "$global_time.earliest$",
+          "latest": "$global_time.latest$"
+        }
+      },
+      "name": "TI Statuses"
+    },
+    "ds_pie_TI_statuses": {
+      "type": "ds.search",
+      "options": {
+        "query": "`pihole_ftl`\n| search type IN ($type$) AND action IN ($action$) AND status IN ($status$) AND client=$client$ AND domain=$domain$ AND reply_type IN ($reply_type$) AND \"eventtype\" IN ($eventtype$)\n| chart count by eventtype",
+        "queryParameters": {
+          "earliest": "$global_time.earliest$",
+          "latest": "$global_time.latest$"
+        }
+      },
+      "name": "Pie TI Statuses"
+    },
+    "ds_DNqTDH5r": {
+      "type": "ds.search",
+      "options": {
+        "query": "$pihole_blocking$",
+        "queryParameters": {
+          "earliest": "$global_time.earliest$",
+          "latest": "$global_time.latest$"
+        }
+      },
+      "name": "Pi-hole responce after block"
+    },
+    "ds_Sewy39YY": {
+      "type": "ds.search",
+      "options": {
+        "query": "$pihole_status$",
+        "queryParameters": {
+          "earliest": "$global_time.earliest$",
+          "latest": "$global_time.latest$"
+        }
+      },
+      "name": "Pihole responce after enable or disable"
+    },
+    "ds_xaTeX2Ec": {
+      "type": "ds.search",
+      "options": {
+        "query": "$ai$",
+        "queryParameters": {
+          "earliest": "$global_time.earliest$",
+          "latest": "$global_time.latest$"
+        }
+      },
+      "name": "Reply from AI"
+    },
+    "ds_oDlGQb3H": {
+      "type": "ds.search",
+      "options": {
+        "query": "`pihole_ftl`\n| search type IN ($type$) AND action IN ($action$) AND status IN ($status$) AND client=$client$ AND domain=$domain$ AND reply_type IN ($reply_type$) AND \"eventtype\" IN ($eventtype$)\n| stats count,\n        values(eval(if(suspicious_TLD=\"true\", domain, null()))) as suspicious_TLDs,\n        values(eval(if(eventtype=\"Malicious\", domain, null()))) as malicious_domains,\n        values(eval(if(eventtype=\"Suspicious\", domain, null()))) as suspicious_domains,\n        values(eval(if(action=\"blocked\", domain, null()))) as blocked_domains,\n  by client\n| fillnull value=\"NULL\"\n| sort -count",
+        "queryParameters": {
+          "earliest": "$global_time.earliest$",
+          "latest": "$global_time.latest$"
+        }
+      },
+      "name": "Interestings domains by client"
+    },
+    "ds_iWWyYiqq": {
+      "type": "ds.search",
+      "options": {
+        "query": "`pihole_ftl`\n| search type IN ($type$) AND action IN ($action$) AND status IN ($status$) AND client=$client$ AND domain=$domain$ AND reply_type IN ($reply_type$) AND \"eventtype\" IN ($eventtype$)\n| chart count by type",
+        "queryParameters": {
+          "earliest": "$global_time.earliest$",
+          "latest": "$global_time.latest$"
+        }
+      },
+      "name": "Pie types"
+    },
+    "ds_YnzKMxSv": {
+      "type": "ds.search",
+      "options": {
+        "query": "`pihole_ftl`\n| search type IN ($type$) AND action IN ($action$) AND status IN ($status$) AND client=$client$ AND domain=$domain$ AND reply_type IN ($reply_type$) AND \"eventtype\" IN ($eventtype$)\n| chart count by reply_type",
+        "queryParameters": {
+          "earliest": "$global_time.earliest$",
+          "latest": "$global_time.latest$"
+        }
+      },
+      "name": "Pie reply types"
+    },
+    "ds_kaPthiOf": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=pihole sourcetype=pihole:ftl \n| search type IN ($type$) AND action IN ($action$) AND status IN ($status$) AND client=$client$ AND domain=$domain$ AND reply_type IN ($reply_type$) AND \"eventtype\" IN ($eventtype$)\n| bin _time span=5m\n| stats count as dns_queries by _time\n| eventstats avg(dns_queries) as avg stdev(dns_queries) as stdev\n| eval upper=avg+(stdev*2), lower=max(avg-(stdev*2), 0)\n| eval isAnomaly = if(dns_queries>upper OR dns_queries<lower, 1, 0)\n| eval anomaly_value = if(isAnomaly=1, dns_queries, null())\n| fields _time dns_queries upper lower anomaly_value",
+        "queryParameters": {
+          "earliest": "$global_time.earliest$",
+          "latest": "$global_time.latest$"
+        }
+      },
+      "name": "Anomalies detection"
+    }
+  },
+  "visualizations": {
+    "viz_r1Bh3oI0": {
+      "type": "splunk.singlevalue",
+      "options": {
+        "numberPrecision": 0,
+        "sparklineDisplay": "below",
+        "trendDisplay": "percent",
+        "underLabel": "Clean queries",
+        "unitPosition": "after",
+        "shouldUseThousandSeparators": true,
+        "backgroundColor": "> majorValue | rangeValue(convertedColorRange)"
+      },
+      "context": {
+        "convertedColorRange": [
+          {
+            "from": 0,
+            "value": "#118832"
+          },
+          {
+            "to": 0,
+            "value": "#118832"
+          }
+        ]
+      },
+      "dataSources": {
+        "primary": "ds_rcr1Coeb"
+      },
+      "title": "Clean queries in last 24h"
+    },
+    "viz_9oJ7yp47": {
+      "type": "splunk.singlevalue",
+      "options": {
+        "numberPrecision": 0,
+        "sparklineDisplay": "below",
+        "trendDisplay": "percent",
+        "underLabel": "Suspicious queries",
+        "unitPosition": "after",
+        "shouldUseThousandSeparators": true,
+        "backgroundColor": "> majorValue | rangeValue(convertedColorRange)"
+      },
+      "context": {
+        "convertedColorRange": [
+          {
+            "from": 0,
+            "value": "#cba700"
+          },
+          {
+            "to": 0,
+            "value": "#cba700"
+          }
+        ]
+      },
+      "dataSources": {
+        "primary": "ds_FQBMjp9b"
+      },
+      "title": "Suspicious queries in last 24h"
+    },
+    "viz_56MR9fQg": {
+      "type": "splunk.singlevalue",
+      "options": {
+        "numberPrecision": 0,
+        "sparklineDisplay": "below",
+        "trendDisplay": "percent",
+        "underLabel": "Malicious queries",
+        "unitPosition": "after",
+        "shouldUseThousandSeparators": true,
+        "backgroundColor": "> majorValue | rangeValue(convertedColorRange)"
+      },
+      "context": {
+        "convertedColorRange": [
+          {
+            "from": 0,
+            "value": "#d41f1f"
+          },
+          {
+            "to": 0,
+            "value": "#d41f1f"
+          }
+        ]
+      },
+      "dataSources": {
+        "primary": "ds_kiSo2FCq"
+      },
+      "title": "Malicious queries in last 24h"
+    },
+    "viz_FHabEYG6": {
+      "type": "splunk.singlevalue",
+      "options": {
+        "numberPrecision": 0,
+        "sparklineDisplay": "below",
+        "trendDisplay": "percent",
+        "underLabel": "Allowed queries",
+        "unitPosition": "after",
+        "shouldUseThousandSeparators": true,
+        "backgroundColor": "> majorValue | rangeValue(convertedColorRange)"
+      },
+      "context": {
+        "convertedColorRange": [
+          {
+            "from": 0,
+            "value": "#118832"
+          },
+          {
+            "to": 0,
+            "value": "#118832"
+          }
+        ]
+      },
+      "dataSources": {
+        "primary": "ds_zdWqTN5s"
+      },
+      "title": "Allowed queries in last 24h"
+    },
+    "viz_nBccp18Z": {
+      "type": "splunk.singlevalue",
+      "options": {
+        "numberPrecision": 0,
+        "sparklineDisplay": "below",
+        "trendDisplay": "percent",
+        "underLabel": "Blocked queries",
+        "unitPosition": "after",
+        "shouldUseThousandSeparators": true,
+        "backgroundColor": "> majorValue | rangeValue(convertedColorRange)"
+      },
+      "context": {
+        "convertedColorRange": [
+          {
+            "from": 0,
+            "value": "#d41f1f"
+          },
+          {
+            "to": 0,
+            "value": "#d41f1f"
+          }
+        ]
+      },
+      "dataSources": {
+        "primary": "ds_P4gd7rER"
+      },
+      "title": "Blocked queries in last 24h"
+    },
+    "viz_Bt64eBot": {
+      "type": "splunk.singlevalue",
+      "options": {
+        "numberPrecision": 0,
+        "sparklineDisplay": "below",
+        "trendDisplay": "percent",
+        "underLabel": "Total queries",
+        "unitPosition": "after",
+        "shouldUseThousandSeparators": true,
+        "backgroundColor": "> majorValue | rangeValue(convertedColorRange)"
+      },
+      "context": {
+        "convertedColorRange": [
+          {
+            "from": 0,
+            "value": "#1182f3"
+          },
+          {
+            "to": 0,
+            "value": "#1182f3"
+          }
+        ]
+      },
+      "dataSources": {
+        "primary": "ds_rZOUNdGG"
+      },
+      "title": "Total queries in last 24h"
+    },
+    "viz_UwDIKMFk": {
+      "type": "splunk.bar",
+      "options": {
+        "yAxisAbbreviation": "auto",
+        "y2AxisAbbreviation": "auto",
+        "showRoundedY2AxisLabels": false,
+        "legendTruncation": "ellipsisMiddle",
+        "showY2MajorGridLines": true,
+        "xAxisTitleVisibility": "show",
+        "yAxisTitleVisibility": "show",
+        "y2AxisTitleVisibility": "show",
+        "yAxisScale": "linear",
+        "dataValuesDisplay": "off",
+        "stackMode": "stacked",
+        "showSplitSeries": false,
+        "showIndependentYRanges": false,
+        "legendDisplay": "right",
+        "seriesColorsByField": {
+          "Clean": "#53a051",
+          "Malicious": "#dc4e41",
+          "Suspicious": "#f1813f"
+        }
+      },
+      "dataSources": {
+        "primary": "ds_PhhlwG7T"
+      },
+      "title": "TI statuses per client",
+      "description": "Stacked bar chart displaying how many Malicious, Suspicious, and Clean queries each client made"
+    },
+    "viz_0zmL5im7": {
+      "type": "splunk.area",
+      "options": {
+        "yAxisAbbreviation": "auto",
+        "y2AxisAbbreviation": "auto",
+        "showRoundedY2AxisLabels": false,
+        "legendTruncation": "ellipsisMiddle",
+        "showY2MajorGridLines": true,
+        "xAxisLabelRotation": 0,
+        "xAxisTitleVisibility": "show",
+        "yAxisTitleVisibility": "show",
+        "y2AxisTitleVisibility": "show",
+        "yAxisScale": "linear",
+        "showOverlayY2Axis": false,
+        "y2AxisScale": "inherit",
+        "nullValueDisplay": "gaps",
+        "dataValuesDisplay": "minmax",
+        "stackMode": "auto",
+        "showSplitSeries": false,
+        "showIndependentYRanges": false,
+        "legendMode": "standard",
+        "legendDisplay": "right",
+        "seriesColorsByField": {
+          "Clean": "#4fa484",
+          "Malicious": "#dc4e41",
+          "Suspicious": "#f1813f"
+        }
+      },
+      "dataSources": {
+        "primary": "ds_timechart_by_TI_statuses"
+      },
+      "title": "Timechart by TI statuses",
+      "description": "Time series showing trend of Malicious, Suspicious, and Clean queries over time"
+    },
+    "viz_ZEouRVha": {
+      "type": "splunk.area",
+      "options": {
+        "yAxisAbbreviation": "auto",
+        "y2AxisAbbreviation": "auto",
+        "showRoundedY2AxisLabels": false,
+        "legendTruncation": "ellipsisMiddle",
+        "showY2MajorGridLines": true,
+        "xAxisLabelRotation": 0,
+        "xAxisTitleVisibility": "show",
+        "yAxisTitleVisibility": "show",
+        "y2AxisTitleVisibility": "show",
+        "yAxisScale": "linear",
+        "showOverlayY2Axis": false,
+        "y2AxisScale": "inherit",
+        "nullValueDisplay": "gaps",
+        "dataValuesDisplay": "off",
+        "stackMode": "auto",
+        "showSplitSeries": false,
+        "showIndependentYRanges": false,
+        "legendMode": "standard",
+        "legendDisplay": "right"
+      },
+      "dataSources": {
+        "primary": "ds_timechart_by_clients"
+      },
+      "title": "Timechart by clients",
+      "description": "Time series showing DNS query volume over time, broken down by client IP"
+    },
+    "viz_ImhiTCZA": {
+      "type": "splunk.pie",
+      "options": {
+        "collapseThreshold": 0.01,
+        "showDonutHole": true
+      },
+      "dataSources": {
+        "primary": "ds_pie_active_clients"
+      },
+      "title": "Active Clients",
+      "description": "Pie chart showing which clients generated the most DNS queries"
+    },
+    "viz_rlMkLbR9": {
+      "type": "splunk.pie",
+      "options": {
+        "collapseThreshold": 0.01,
+        "showDonutHole": true,
+        "seriesColors": [
+          "#53a051",
+          "#dc4e41"
+        ]
+      },
+      "dataSources": {
+        "primary": "ds_pie_actions"
+      },
+      "title": "Allowed vs Blocked",
+      "description": "Pie chart showing proportion of DNS queries that were allowed vs blocked by Pi-hole"
+    },
+    "viz_v1SF6m86": {
+      "type": "splunk.table",
+      "options": {
+        "dataOverlayMode": "none",
+        "drilldown": "none",
+        "showRowNumbers": true,
+        "showInternalFields": false,
+        "headerVisibility": "fixed",
+        "columnFormat": {
+          "Action": {
+            "data": "> table | seriesByName(\"Action\") | formatByType(ActionColumnFormatEditorConfig)",
+            "rowColors": "> table | seriesByName('Action') | pick(ActionRowColorsEditorConfig)",
+            "rowBackgroundColors": "> table | seriesByName(\"Action\") | matchValue(ActionRowBackgroundColorsEditorConfig)"
+          },
+          "TI Status": {
+            "data": "> table | seriesByName(\"TI Status\") | formatByType(TI_StatusColumnFormatEditorConfig)",
+            "rowColors": "> table | seriesByName('TI Status') | pick(TI_StatusRowColorsEditorConfig)",
+            "rowBackgroundColors": "> table | seriesByName(\"TI Status\") | matchValue(TI_StatusRowBackgroundColorsEditorConfig)"
+          },
+          "TI status": {
+            "data": "> table | seriesByName(\"TI status\") | formatByType(TI_statusColumnFormatEditorConfig)",
+            "rowColors": "> table | seriesByName('TI status') | pick(TI_statusRowColorsEditorConfig)",
+            "rowBackgroundColors": "> table | seriesByName(\"TI status\") | matchValue(TI_statusRowBackgroundColorsEditorConfig)"
+          }
+        },
+        "fontSize": "large"
+      },
+      "dataSources": {
+        "primary": "ds_detailed_table"
+      },
+      "title": "Detailed table",
+      "context": {
+        "ActionColumnFormatEditorConfig": {
+          "string": {
+            "unitPosition": "after"
+          }
+        },
+        "ActionRowColorsEditorConfig": [
+          "#ffffff"
+        ],
+        "ActionRowBackgroundColorsEditorConfig": [
+          {
+            "match": "blocked",
+            "value": "#FE3A3A"
+          },
+          {
+            "match": "allowed",
+            "value": "#088f44"
+          },
+          {
+            "match": "unknown",
+            "value": "#000000"
+          }
+        ],
+        "TI_StatusColumnFormatEditorConfig": {
+          "string": {
+            "unitPosition": "after"
+          }
+        },
+        "TI_StatusRowColorsEditorConfig": [
+          "#ffffff"
+        ],
+        "TI_StatusRowBackgroundColorsEditorConfig": [
+          {
+            "match": "Malicious",
+            "value": "#FE3A3A"
+          },
+          {
+            "match": "Suspicious",
+            "value": "#FFD442"
+          },
+          {
+            "match": "Clean",
+            "value": "#088F44"
+          }
+        ],
+        "TI_statusColumnFormatEditorConfig": {
+          "string": {
+            "unitPosition": "after"
+          }
+        },
+        "TI_statusRowColorsEditorConfig": [
+          "#ffffff"
+        ],
+        "TI_statusRowBackgroundColorsEditorConfig": [
+          {
+            "match": "Malicious",
+            "value": "#FE3A3A"
+          },
+          {
+            "match": "Suspicious",
+            "value": "#ffa857"
+          },
+          {
+            "match": "Clean",
+            "value": "#088F44"
+          }
+        ]
+      },
+      "eventHandlers": [],
+      "description": "Full table of DNS queries with enriched fields."
+    },
+    "viz_KpIHHjVd": {
+      "type": "splunk.pie",
+      "dataSources": {
+        "primary": "ds_pie_TI_statuses"
+      },
+      "title": "TI Statuses",
+      "description": "Pie chart showing distribution of Malicious, Suspicious, and Clean DNS queries based on TI",
+      "options": {
+        "showDonutHole": true,
+        "seriesColors": [
+          "#53a051",
+          "#dc4e41",
+          "#f1813f"
+        ]
+      }
+    },
+    "viz_BnfySUcJ": {
+      "type": "splunk.markdown",
+      "options": {
+        "markdown": "### **Active responce:**",
+        "fontSize": "custom",
+        "customFontSize": 70
+      }
+    },
+    "viz_JOtlUsf6": {
+      "type": "splunk.markdown",
+      "options": {
+        "markdown": "### **Statistical visualisations:**",
+        "fontSize": "custom",
+        "customFontSize": 70
+      }
+    },
+    "viz_sxCHpuZw": {
+      "type": "splunk.table",
+      "title": "Pi-hole responce",
+      "dataSources": {
+        "primary": "ds_DNqTDH5r"
+      },
+      "description": "Shows API response from Pi-hole after executing block/unblock domain actions",
+      "options": {
+        "fontSize": "large"
+      }
+    },
+    "viz_j5tl610z": {
+      "type": "splunk.table",
+      "dataSources": {
+        "primary": "ds_Sewy39YY"
+      },
+      "title": "Pi-hole responce",
+      "description": "Shows API response when Pi-hole is enabled, disabled, or status is checked",
+      "options": {
+        "fontSize": "large"
+      }
+    },
+    "viz_Uc0K5hJJ": {
+      "type": "splunk.markdown",
+      "options": {
+        "markdown": "### **Ask AI:**",
+        "fontSize": "custom",
+        "customFontSize": 70
+      }
+    },
+    "viz_RRcchQXy": {
+      "type": "splunk.table",
+      "dataSources": {
+        "primary": "ds_xaTeX2Ec"
+      },
+      "title": "Reply from AI",
+      "description": "Displays the AI assistant’s explanation, report, or recommendation based on selected search results",
+      "options": {
+        "fontSize": "large"
+      }
+    },
+    "viz_ZSd9TP1K": {
+      "type": "splunk.markdown",
+      "options": {
+        "markdown": "Submit",
+        "backgroundColor": "#45b74a",
+        "fontSize": "custom",
+        "customFontSize": 40
+      },
+      "eventHandlers": [
+        {
+          "type": "drilldown.setToken",
+          "options": {
+            "tokens": [
+              {
+                "token": "pihole_status",
+                "value": "| pihole $pihole_status_action$"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "viz_zFvXOpBU": {
+      "type": "splunk.markdown",
+      "options": {
+        "markdown": "Submit",
+        "backgroundColor": "#45b74a",
+        "fontSize": "custom",
+        "customFontSize": 40
+      },
+      "eventHandlers": [
+        {
+          "type": "drilldown.setToken",
+          "options": {
+            "tokens": [
+              {
+                "token": "ai",
+                "value": "$ai_search$ | head $ai_limit$ | ai $ai_action$"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "viz_r5njT1xZ": {
+      "type": "splunk.markdown",
+      "options": {
+        "markdown": "Submit",
+        "backgroundColor": "#45b74a",
+        "fontSize": "custom",
+        "customFontSize": 40
+      },
+      "eventHandlers": [
+        {
+          "type": "drilldown.setToken",
+          "options": {
+            "tokens": [
+              {
+                "token": "pihole_blocking",
+                "value": "| pihole $pihole_action$ domain=$pihole_domain$"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "viz_yabKOmVo": {
+      "type": "splunk.table",
+      "title": "Interestings domains by client",
+      "dataSources": {
+        "primary": "ds_oDlGQb3H"
+      },
+      "options": {
+        "showRowNumbers": true,
+        "headerVisibility": "fixed",
+        "fontSize": "large",
+        "count": 5,
+        "backgroundColor": "> themes.defaultBackgroundColor",
+        "tableFormat": {
+          "rowBackgroundColors": "> table | seriesByIndex(0) | pick(tableAltRowBackgroundColorsByTheme)"
+        }
+      },
+      "description": "Table listing clients with the highest number of DNS queries, along with associated blocked, malicious, suspicious, and suspicious TLDs."
+    },
+    "viz_SUTvixxA": {
+      "type": "splunk.pie",
+      "options": {
+        "showDonutHole": true
+      },
+      "dataSources": {
+        "primary": "ds_iWWyYiqq"
+      },
+      "title": "Types",
+      "description": "Pie chart showing the distribution of DNS query types"
+    },
+    "viz_HTNCMqyC": {
+      "type": "splunk.pie",
+      "dataSources": {
+        "primary": "ds_YnzKMxSv"
+      },
+      "title": "Reply Types",
+      "options": {
+        "showDonutHole": true
+      },
+      "description": "Pie chart representing how Pi-hole responded to DNS queries"
+    },
+    "viz_DXlidaKV": {
+      "type": "splunk.line",
+      "dataSources": {
+        "primary": "ds_kaPthiOf"
+      },
+      "title": "Anomaly Detection in number of DNS queries",
+      "showLastUpdated": true,
+      "options": {
+        "chart": {
+          "seriesColors": {
+            "dns_queries": "#1f77b4",
+            "upper": "#2ca02c",
+            "lower": "#2ca02c",
+            "anomaly_value": "#d62728"
+          },
+          "seriesTypes": {
+            "dns_queries": "line",
+            "upper": "line",
+            "lower": "line",
+            "anomaly_value": "scatter"
+          }
+        },
+        "lineWidth": 4,
+        "xAxisTitleText": "Time",
+        "yAxisTitleText": "Number of DNS queries",
+        "seriesColorsByField": {
+          "dns_queries": "#009CEB",
+          "upper": "#53a051",
+          "lower": "#53a051",
+          "anomaly_value": "#dc4e41"
+        },
+        "nullValueDisplay": "zero"
+      },
+      "eventHandlers": [
+        {
+          "type": "drilldown.linkToSearch",
+          "options": {
+            "query": "index=pihole sourcetype=pihole:ftl \n| search type IN (*) AND action IN (*) AND status IN (*) AND client=* AND domain=* AND reply_type IN (*) AND \"eventtype\" IN (*)\n| bin _time span=5m\n| stats count as dns_queries by _time\n| eventstats avg(dns_queries) as avg stdev(dns_queries) as stdev\n| eval upper=avg+(stdev*2), lower=max(avg-(stdev*2), 0)\n| eval isAnomaly = if(dns_queries>upper OR dns_queries<lower, 1, 0)\n| where isAnomaly=1\n| join _time [ search index=pihole sourcetype=pihole:ftl \n               | bin _time span=5m\n               | stats values(client) as clients, values(domain) as domains by _time ]\n| fields _time dns_queries clients domains",
+            "earliest": "$global_time.earliest$",
+            "latest": "$global_time.latest$",
+            "type": "custom",
+            "newTab": true
+          }
+        }
+      ],
+      "description": "Line chart identifying statistical anomalies in DNS query volume using a 5-minute time bin and 2 standard deviation bounds. Data points outside the upper or lower bounds are marked as anomalies. Interactive Feature: Clicking an anomaly triggers a drill-down search that displays related client and domain information for that timestamp."
+    }
+  },
+  "inputs": {
+    "input_global_trp": {
+      "type": "input.timerange",
+      "options": {
+        "token": "global_time",
+        "defaultValue": "-24h@h,now"
+      },
+      "title": "Global Time Range"
+    },
+    "input_w4pLKK7x": {
+      "options": {
+        "items": [
+          {
+            "label": "All",
+            "value": "*"
+          }
+        ],
+        "defaultValue": [
+          "*"
+        ],
+        "token": "type"
+      },
+      "title": "Types",
+      "type": "input.multiselect",
+      "dataSources": {
+        "primary": "ds_VdR29zsD"
+      }
+    },
+    "input_R8zknLKS": {
+      "options": {
+        "items": ">frame(label, value) | prepend(formattedStatics) | objects()",
+        "defaultValue": [
+          "*"
+        ],
+        "token": "action"
+      },
+      "title": "Actions",
+      "type": "input.multiselect",
+      "dataSources": {
+        "primary": "ds_EnVHiv7J"
+      },
+      "context": {
+        "formattedConfig": {
+          "number": {
+            "prefix": ""
+          }
+        },
+        "formattedStatics": ">statics | formatByType(formattedConfig)",
+        "statics": [
+          [
+            "All"
+          ],
+          [
+            "*"
+          ]
+        ],
+        "label": ">primary | seriesByName(\"action\") | renameSeries(\"label\") | formatByType(formattedConfig)",
+        "value": ">primary | seriesByName(\"action\") | renameSeries(\"value\") | formatByType(formattedConfig)"
+      }
+    },
+    "input_yTyGlGrO": {
+      "options": {
+        "items": [
+          {
+            "label": "All",
+            "value": "*"
+          }
+        ],
+        "defaultValue": [
+          "*"
+        ],
+        "token": "status"
+      },
+      "title": "Statuses",
+      "type": "input.multiselect",
+      "dataSources": {
+        "primary": "ds_hGarqLiL"
+      }
+    },
+    "input_23X5vry3": {
+      "options": {
+        "defaultValue": "*",
+        "token": "client"
+      },
+      "title": "Client IP",
+      "type": "input.text"
+    },
+    "input_3K0TRkVY": {
+      "options": {
+        "defaultValue": "*",
+        "token": "domain"
+      },
+      "title": "Domain",
+      "type": "input.text"
+    },
+    "input_wmIq8X3t": {
+      "options": {
+        "items": [
+          {
+            "label": "All",
+            "value": "*"
+          }
+        ],
+        "defaultValue": [
+          "*"
+        ],
+        "token": "reply_type"
+      },
+      "title": "Reply types",
+      "type": "input.multiselect",
+      "dataSources": {
+        "primary": "ds_5mwkotBe"
+      }
+    },
+    "input_qlqs8K6Y": {
+      "options": {
+        "items": [
+          {
+            "label": "All",
+            "value": "*"
+          }
+        ],
+        "defaultValue": [
+          "*"
+        ],
+        "token": "eventtype"
+      },
+      "title": "TI Statuses",
+      "type": "input.multiselect",
+      "dataSources": {
+        "primary": "ds_P8uI5EoJ"
+      }
+    },
+    "input_xhSHRP34": {
+      "options": {
+        "defaultValue": "",
+        "token": "pihole_domain"
+      },
+      "title": "Domain / RegEx",
+      "type": "input.text"
+    },
+    "input_weKwQ1on": {
+      "options": {
+        "items": [
+          {
+            "label": "Block exact domain",
+            "value": "action=block"
+          },
+          {
+            "label": "Unblock exact domain",
+            "value": "action=unblock"
+          },
+          {
+            "label": "Block domains by regex",
+            "value": "action=block regex=true"
+          },
+          {
+            "label": "Unblock domains by regex",
+            "value": "action=unblock regex=true"
+          }
+        ],
+        "defaultValue": "action=block",
+        "token": "pihole_action"
+      },
+      "title": "Action",
+      "type": "input.dropdown"
+    },
+    "input_4Gtc80Z1": {
+      "options": {
+        "defaultValue": "*",
+        "token": "ai_question"
+      },
+      "title": "Question (Only for Advise action)",
+      "type": "input.text"
+    },
+    "input_qArHb0xz": {
+      "options": {
+        "items": [
+          {
+            "label": "Explain",
+            "value": "action=\"explain\""
+          },
+          {
+            "label": "Report",
+            "value": "action=\"report\""
+          },
+          {
+            "label": "Advise",
+            "value": "action=\"advise\" question=\"$ai_question$\""
+          }
+        ],
+        "defaultValue": "action=\"explain\"",
+        "token": "ai_action"
+      },
+      "title": "Action",
+      "type": "input.dropdown"
+    },
+    "input_2ml8zLwc": {
+      "options": {
+        "items": [
+          {
+            "label": "Allowed vs Blocked",
+            "value": "`pihole_ftl` | search type IN ($type$) AND action IN ($action$) AND status IN ($status$) AND client=$client$ AND domain=$domain$ AND reply_type IN ($reply_type$) AND \"eventtype\" IN ($eventtype$) | chart count by action"
+          },
+          {
+            "label": "Active clients",
+            "value": "`pihole_ftl` | search type IN ($type$) AND action IN ($action$) AND status IN ($status$) AND client=$client$ AND domain=$domain$ AND reply_type IN ($reply_type$) AND \"eventtype\" IN ($eventtype$) | chart count by client"
+          },
+          {
+            "label": "TI Statuses",
+            "value": "`pihole_ftl` | search type IN ($type$) AND action IN ($action$) AND status IN ($status$) AND client=$client$ AND domain=$domain$ AND reply_type IN ($reply_type$) AND \"eventtype\" IN ($eventtype$) | chart count by eventtype"
+          },
+          {
+            "label": "Types",
+            "value": "`pihole_ftl` | search type IN ($type$) AND action IN ($action$) AND status IN ($status$) AND client=$client$ AND domain=$domain$ AND reply_type IN ($reply_type$) AND \"eventtype\" IN ($eventtype$) | chart count by type"
+          },
+          {
+            "label": "Reply Types",
+            "value": "`pihole_ftl` | search type IN ($type$) AND action IN ($action$) AND status IN ($status$) AND client=$client$ AND domain=$domain$ AND reply_type IN ($reply_type$) AND \"eventtype\" IN ($eventtype$) | chart count by reply_type"
+          },
+          {
+            "label": "Anomaly Detection in number of DNS queries",
+            "value": "index=pihole sourcetype=pihole:ftl  | search type IN ($type$) AND action IN ($action$) AND status IN ($status$) AND client=$client$ AND domain=$domain$ AND reply_type IN ($reply_type$) AND \"eventtype\" IN ($eventtype$) | bin _time span=5m | stats count as dns_queries by _time | eventstats avg(dns_queries) as avg stdev(dns_queries) as stdev | eval upper=avg+(stdev*2), lower=max(avg-(stdev*2), 0) | eval isAnomaly = if(dns_queries>upper OR dns_queries<lower, 1, 0) | eval anomaly_value = if(isAnomaly=1, dns_queries, null()) | fields _time dns_queries upper lower anomaly_value"
+          },
+          {
+            "label": "TI statuses per client",
+            "value": "`pihole_ftl` | search type IN ($type$) AND action IN ($action$) AND status IN ($status$) AND client=$client$ AND domain=$domain$ AND reply_type IN ($reply_type$) AND \"eventtype\" IN ($eventtype$) | chart count by client, eventtype"
+          },
+          {
+            "label": "Timechart by clients",
+            "value": "index=pihole sourcetype=pihole:ftl  | search type IN ($type$) AND action IN ($action$) AND status IN ($status$) AND client=$client$ AND domain=$domain$ AND reply_type IN ($reply_type$) AND \"eventtype\" IN ($eventtype$) | timechart count by client"
+          },
+          {
+            "label": "Timechart by TI statuses",
+            "value": "index=pihole sourcetype=pihole:ftl  | search type IN ($type$) AND action IN ($action$) AND status IN ($status$) AND client=$client$ AND domain=$domain$ AND reply_type IN ($reply_type$) AND \"eventtype\" IN ($eventtype$) | timechart count by eventtype"
+          },
+          {
+            "label": "Interestings domains by client",
+            "value": "`pihole_ftl` | search type IN ($type$) AND action IN ($action$) AND status IN ($status$) AND client=$client$ AND domain=$domain$ AND reply_type IN ($reply_type$) AND \"eventtype\" IN ($eventtype$) | stats count,         values(eval(if(suspicious_TLD=\"true\", domain, null()))) as suspicious_TLDs,         values(eval(if(eventtype=\"Malicious\", domain, null()))) as malicious_domains,         values(eval(if(eventtype=\"Suspicious\", domain, null()))) as suspicious_domains,         values(eval(if(action=\"blocked\", domain, null()))) as blocked_domains,   by client | fillnull value=\"NULL\" | sort -count"
+          },
+          {
+            "label": "Detailed table",
+            "value": "`pihole_ftl` | search type IN ($type$) AND action IN ($action$) AND status IN ($status$) AND client=$client$ AND domain=$domain$ AND reply_type IN ($reply_type$) AND \"eventtype\" IN ($eventtype$) | rename timestamp as Time, type as Type, action as Action, status as Status, client as \"Client IP\", domain as Domain, forward as Forward, reply_type as \"Reply type\", eventtype as \"TI status\""
+          },
+          {
+            "label": "Custom search",
+            "value": "$ai_custom_search$"
+          }
+        ],
+        "defaultValue": "$ai_custom_search$",
+        "token": "ai_search"
+      },
+      "title": "Searches",
+      "type": "input.dropdown"
+    },
+    "input_JbyDxhbN": {
+      "options": {
+        "defaultValue": "`pihole_ftl`",
+        "token": "ai_custom_search"
+      },
+      "title": "Custom search",
+      "type": "input.text"
+    },
+    "input_oU6Cqc9y": {
+      "options": {
+        "defaultValue": 25,
+        "token": "ai_limit",
+        "min": 1,
+        "max": 50,
+        "step": 5
+      },
+      "title": "Events limit",
+      "type": "input.number"
+    },
+    "input_K6o1ZpYq": {
+      "options": {
+        "items": [
+          {
+            "label": "Check Pi-hole status",
+            "value": "action=\"status\""
+          },
+          {
+            "label": "Disable Pi-hole blocking for X minutes",
+            "value": "action=\"disable\" minutes=$pihole_minutes$"
+          },
+          {
+            "label": "Enable Pi-hole blocking",
+            "value": "action=\"enable\""
+          }
+        ],
+        "defaultValue": "action=\"status\"",
+        "token": "pihole_status_action"
+      },
+      "title": "Action",
+      "type": "input.dropdown"
+    },
+    "input_fLOV6aXW": {
+      "options": {
+        "defaultValue": 5,
+        "token": "pihole_minutes",
+        "min": 1,
+        "max": 1440,
+        "step": 5
+      },
+      "title": "Minutes",
+      "type": "input.number"
+    }
+  },
+  "layout": {
+    "type": "absolute",
+    "options": {
+      "width": 2700,
+      "height": 4800
+    },
+    "structure": [
+      {
+        "item": "viz_v1SF6m86",
+        "type": "block",
+        "position": {
+          "x": 0,
+          "y": 2930,
+          "w": 2700,
+          "h": 530
+        }
+      },
+      {
+        "item": "viz_rlMkLbR9",
+        "type": "block",
+        "position": {
+          "x": 0,
+          "y": 405,
+          "w": 540,
+          "h": 500
+        }
+      },
+      {
+        "item": "viz_ImhiTCZA",
+        "type": "block",
+        "position": {
+          "x": 540,
+          "y": 405,
+          "w": 540,
+          "h": 500
+        }
+      },
+      {
+        "item": "viz_KpIHHjVd",
+        "type": "block",
+        "position": {
+          "x": 1080,
+          "y": 405,
+          "w": 540,
+          "h": 500
+        }
+      },
+      {
+        "item": "viz_ZEouRVha",
+        "type": "block",
+        "position": {
+          "x": 0,
+          "y": 1770,
+          "w": 1350,
+          "h": 500
+        }
+      },
+      {
+        "item": "viz_0zmL5im7",
+        "type": "block",
+        "position": {
+          "x": 1350,
+          "y": 1770,
+          "w": 1350,
+          "h": 500
+        }
+      },
+      {
+        "item": "viz_UwDIKMFk",
+        "type": "block",
+        "position": {
+          "x": 0,
+          "y": 1265,
+          "w": 2700,
+          "h": 500
+        }
+      },
+      {
+        "item": "viz_BnfySUcJ",
+        "type": "block",
+        "position": {
+          "x": 10,
+          "y": 4380,
+          "w": 720,
+          "h": 100
+        }
+      },
+      {
+        "item": "viz_JOtlUsf6",
+        "type": "block",
+        "position": {
+          "x": 0,
+          "y": 0,
+          "w": 2700,
+          "h": 100
+        }
+      },
+      {
+        "item": "input_xhSHRP34",
+        "type": "input",
+        "position": {
+          "x": 0,
+          "y": 4470,
+          "w": 440,
+          "h": 90
+        }
+      },
+      {
+        "item": "input_weKwQ1on",
+        "type": "input",
+        "position": {
+          "x": 440,
+          "y": 4470,
+          "w": 440,
+          "h": 90
+        }
+      },
+      {
+        "item": "viz_sxCHpuZw",
+        "type": "block",
+        "position": {
+          "x": 0,
+          "y": 4560,
+          "w": 1330,
+          "h": 200
+        }
+      },
+      {
+        "item": "viz_j5tl610z",
+        "type": "block",
+        "position": {
+          "x": 1360,
+          "y": 4560,
+          "w": 1335,
+          "h": 200
+        }
+      },
+      {
+        "item": "viz_Uc0K5hJJ",
+        "type": "block",
+        "position": {
+          "x": 10,
+          "y": 3480,
+          "w": 310,
+          "h": 100
+        }
+      },
+      {
+        "item": "input_4Gtc80Z1",
+        "type": "input",
+        "position": {
+          "x": 0,
+          "y": 3570,
+          "w": 440,
+          "h": 90
+        }
+      },
+      {
+        "item": "input_qArHb0xz",
+        "type": "input",
+        "position": {
+          "x": 450,
+          "y": 3570,
+          "w": 440,
+          "h": 90
+        }
+      },
+      {
+        "item": "viz_RRcchQXy",
+        "type": "block",
+        "position": {
+          "x": 0,
+          "y": 3660,
+          "w": 2700,
+          "h": 700
+        }
+      },
+      {
+        "item": "input_2ml8zLwc",
+        "type": "input",
+        "position": {
+          "x": 900,
+          "y": 3570,
+          "w": 440,
+          "h": 90
+        }
+      },
+      {
+        "item": "input_JbyDxhbN",
+        "type": "input",
+        "position": {
+          "x": 1350,
+          "y": 3570,
+          "w": 440,
+          "h": 90
+        }
+      },
+      {
+        "item": "input_oU6Cqc9y",
+        "type": "input",
+        "position": {
+          "x": 1800,
+          "y": 3570,
+          "w": 440,
+          "h": 90
+        }
+      },
+      {
+        "item": "viz_Bt64eBot",
+        "type": "block",
+        "position": {
+          "x": 0,
+          "y": 100,
+          "w": 450,
+          "h": 300
+        }
+      },
+      {
+        "item": "viz_nBccp18Z",
+        "type": "block",
+        "position": {
+          "x": 450,
+          "y": 100,
+          "w": 450,
+          "h": 300
+        }
+      },
+      {
+        "item": "viz_FHabEYG6",
+        "type": "block",
+        "position": {
+          "x": 900,
+          "y": 100,
+          "w": 450,
+          "h": 300
+        }
+      },
+      {
+        "item": "viz_56MR9fQg",
+        "type": "block",
+        "position": {
+          "x": 1350,
+          "y": 100,
+          "w": 450,
+          "h": 300
+        }
+      },
+      {
+        "item": "viz_9oJ7yp47",
+        "type": "block",
+        "position": {
+          "x": 1800,
+          "y": 100,
+          "w": 450,
+          "h": 300
+        }
+      },
+      {
+        "item": "viz_r1Bh3oI0",
+        "type": "block",
+        "position": {
+          "x": 2250,
+          "y": 100,
+          "w": 450,
+          "h": 300
+        }
+      },
+      {
+        "item": "input_K6o1ZpYq",
+        "type": "input",
+        "position": {
+          "x": 1350,
+          "y": 4470,
+          "w": 440,
+          "h": 90
+        }
+      },
+      {
+        "item": "input_fLOV6aXW",
+        "type": "input",
+        "position": {
+          "x": 1790,
+          "y": 4470,
+          "w": 440,
+          "h": 90
+        }
+      },
+      {
+        "item": "viz_ZSd9TP1K",
+        "type": "block",
+        "position": {
+          "x": 2240,
+          "y": 4490,
+          "w": 440,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_zFvXOpBU",
+        "type": "block",
+        "position": {
+          "x": 2260,
+          "y": 3590,
+          "w": 420,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_r5njT1xZ",
+        "type": "block",
+        "position": {
+          "x": 890,
+          "y": 4490,
+          "w": 440,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_yabKOmVo",
+        "type": "block",
+        "position": {
+          "x": 0,
+          "y": 2275,
+          "w": 2700,
+          "h": 650
+        }
+      },
+      {
+        "item": "viz_SUTvixxA",
+        "type": "block",
+        "position": {
+          "x": 1620,
+          "y": 405,
+          "w": 540,
+          "h": 500
+        }
+      },
+      {
+        "item": "viz_HTNCMqyC",
+        "type": "block",
+        "position": {
+          "x": 2160,
+          "y": 405,
+          "w": 540,
+          "h": 500
+        }
+      },
+      {
+        "item": "viz_DXlidaKV",
+        "type": "block",
+        "position": {
+          "x": 0,
+          "y": 910,
+          "w": 2700,
+          "h": 350
+        }
+      }
+    ],
+    "globalInputs": [
+      "input_global_trp",
+      "input_w4pLKK7x",
+      "input_R8zknLKS",
+      "input_yTyGlGrO",
+      "input_23X5vry3",
+      "input_3K0TRkVY",
+      "input_wmIq8X3t",
+      "input_qlqs8K6Y"
+    ]
+  },
+  "title": "ThreatHole",
+  "description": "ThreatHole provides AI-assisted DNS security monitoring and response by integrating Pi-hole with Splunk. It visualizes DNS activity across clients, highlights suspicious and malicious domains based on threat intelligence feeds (PhishTank, URLhaus), and tracks query trends over time. The dashboard supports active response actions (block/unblock domains, enable/disable Pi-hole) and integrates with a local AI assistant to generate explanations, SOC-style reports, and recommendations. This creates a complete detection → triage → response workflow for a home-network SOC.",
+  "defaults": {
+    "dataSources": {
+      "ds.search": {
+        "options": {
+          "queryParameters": {
+            "latest": "$global_time.latest$",
+            "earliest": "$global_time.earliest$"
+          }
+        }
+      }
+    },
+    "tokens": {
+      "default": {
+        "run": {
+          "value": "| makeresults"
+        },
+        "run3": {
+          "value": "| makeresults | eval Instuctions = \"Select an action, an existing search, or select \\“Custom search\\” and specify your own. If the action is \\“Advise\\”, add a question to the message for AI. Specify the event limit from 1 to 50 and click the \\“Submit\\” button.\" | table Instuctions"
+        },
+        "pihole_status": {
+          "value": "| makeresults | eval Instructions = \"Choose action (if Disabling Pi-hole blocking, enter number of minutes). Then click Submit button to send request to Pi-hole API\" | table Instructions"
+        },
+        "ai": {
+          "value": "| makeresults | eval Instuctions = \"Select an action, an existing search, or select \\“Custom search\\” and specify your own. If the action is \\“Advise\\”, add a question to the message for AI. Specify the event limit from 1 to 50 and click the \\“Submit\\” button.\" | table Instuctions"
+        },
+        "pihole_blocking": {
+          "value": "| makeresults | eval Instructions = \"Enter the domain or regex and choose action. Then click Submit button to send request to Pi-hole API\" | table Instructions"
+        }
+      }
+    }
+  }
+}
