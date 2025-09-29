@@ -21,7 +21,7 @@ The project provides a complete **detect → triage → respond** workflow for D
 ## Dashboard Structure  
 The ThreatHole Splunk dashboard includes the following:  
 * KPI metrics (single-value with trends): Total Queries, Allowed, Blocked, Clean, Suspicious, Malicious.
-<img width="2542" height="280" alt="image" src="https://github.com/user-attachments/assets/d19d27e6-f6e5-4628-a91b-eadffd8b60b1" />
+<img width="2542" height="280" alt="image" src="https://github.com/user-attachments/assets/7e6f8e36-ba55-404d-a30b-20ed3766fefe" />
 
 * Statistical visualizations (pie & bar charts):  
     * Allowed vs Blocked  
@@ -31,26 +31,26 @@ The ThreatHole Splunk dashboard includes the following:
     * Reply Types  
     * TI statuses per Client (stacked bar)
  
-<img width="2542" height="462" alt="image" src="https://github.com/user-attachments/assets/58c301b0-b0bf-4fb3-ae88-0386bcb17bc5" />
-<img width="2546" height="474" alt="image" src="https://github.com/user-attachments/assets/cd0a719e-8a71-4e4a-a8b1-4edab09f0d69" />
+<img width="2538" height="457" alt="image" src="https://github.com/user-attachments/assets/496a5103-8735-4f79-8b77-5b0b33ce3aa1" />
+<img width="2537" height="465" alt="image" src="https://github.com/user-attachments/assets/bf28b392-62ad-41f8-9513-c5269d1cfa04" />
 
 * Time-based charts:  
     * Timechart by TI statuses  
     * Timechart by Clients  
     * Anomaly Detection with drill-down (queries outside ±2σ).
 
-<img width="2540" height="322" alt="image" src="https://github.com/user-attachments/assets/1c1db481-fe9d-40c5-b9e4-e3bc4e5e2a03" />
-<img width="2545" height="470" alt="image" src="https://github.com/user-attachments/assets/1b0c87c5-038d-45cd-93bc-e3c29e690d78" />
+<img width="2543" height="328" alt="image" src="https://github.com/user-attachments/assets/8d7231f5-f51f-433f-a713-d4cbae11a213" />
+<img width="2537" height="474" alt="image" src="https://github.com/user-attachments/assets/4d28d8a5-2833-45b0-abb4-75af9aa79403" />
 
 * Interesting Domains table: suspicious TLDs, malicious and suspicious domains by TI, blocked domains per client.  
 * Detailed Logs table (color-coded).  
 * Active Response controls: block/unblock domains, enable/disable Pi-hole, API response tables.
 
-<img width="2489" height="352" alt="image" src="https://github.com/user-attachments/assets/abd4c191-5d74-4fcc-930d-8efd3d10654d" />
+<img width="2535" height="363" alt="image" src="https://github.com/user-attachments/assets/6484c03d-476c-4f3a-8d14-3320401531ef" />
 
 * Ask AI panel: Explain, Report, Advise with AI output table.
 
-<img width="2498" height="346" alt="image" src="https://github.com/user-attachments/assets/93d45b18-bd64-4b5e-aaa8-464161022d09" />
+<img width="2538" height="485" alt="image" src="https://github.com/user-attachments/assets/6b802602-9c8d-4caf-9f41-969753eaf21f" />
 
 ## How to Reproduce  
 ### Step 1: Log Forwarding from Pi-hole  
