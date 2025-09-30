@@ -10,8 +10,10 @@ It integrates:
 * **Threat Intelligence feeds** – PhishTank, URLhaus, Suspicious TLDs.  
 * **Pi-hole API** – block/unblock domains and enable/disable filtering from Splunk.  
 * **AI module (Ollama + LLM)** – Explain, Report, and Advise functions for SOC analysis.  
-The project provides a complete **detect → triage → respond** workflow for DNS security monitoring.  
-  
+The project provides a complete **detect → triage → respond** workflow for DNS security monitoring.
+
+<img width="2559" height="1440" alt="image" src="https://github.com/user-attachments/assets/06a654d7-d8c0-44b3-9faf-4e8acb383b9a" />
+
 ## Requirements  
 * **Pi-hole** installed on Raspberry Pi (tested on Raspberry Pi 3b).  
 * **Splunk Enterprise** (indexer & search head).  
