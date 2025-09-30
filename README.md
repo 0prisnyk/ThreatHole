@@ -42,8 +42,14 @@ The ThreatHole Splunk dashboard includes the following:
 <img width="2543" height="328" alt="image" src="https://github.com/user-attachments/assets/8d7231f5-f51f-433f-a713-d4cbae11a213" />
 <img width="2537" height="474" alt="image" src="https://github.com/user-attachments/assets/4d28d8a5-2833-45b0-abb4-75af9aa79403" />
 
-* Interesting Domains table: suspicious TLDs, malicious and suspicious domains by TI, blocked domains per client.  
-* Detailed Logs table (color-coded).  
+* Interesting Domains table: suspicious TLDs, malicious and suspicious domains by TI, blocked domains per client.
+
+<img width="2539" height="604" alt="image" src="https://github.com/user-attachments/assets/0d234e1e-ae3e-4939-b1ef-f1a448ddcb07" />
+  
+* Detailed Logs table (color-coded).
+
+<img width="2541" height="492" alt="image" src="https://github.com/user-attachments/assets/2b0c7651-f768-4a7e-b199-00db27ac17df" />
+
 * Active Response controls: block/unblock domains, enable/disable Pi-hole, API response tables.
 
 <img width="2535" height="363" alt="image" src="https://github.com/user-attachments/assets/6484c03d-476c-4f3a-8d14-3320401531ef" />
