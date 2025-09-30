@@ -52,7 +52,7 @@ The ThreatHole Splunk dashboard includes the following:
 
 * Active Response controls: block/unblock domains, enable/disable Pi-hole, API response tables.
 
-<img width="2535" height="363" alt="image" src="https://github.com/user-attachments/assets/6484c03d-476c-4f3a-8d14-3320401531ef" />
+<img width="2536" height="362" alt="image" src="https://github.com/user-attachments/assets/f2f92dd4-3810-4cfd-8bba-c77bebc53f1b" />
 
 * Ask AI panel: Explain, Report, Advise with AI output table.
 
